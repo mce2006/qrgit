@@ -1,0 +1,91 @@
+# 初始化仓库
+git init -bare 裸仓库
+
+# 创建文件
+touch README.md
+
+# 增加文件
+git add README.md
+git add .	//提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
+git add -u .	//提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)
+git add -A .	//提交所有变化 上面两个功能的合集（git add --all的缩写）
+
+# 查看仓库当前状态
+git status
+
+# 文件比较
+git diff README.md
+
+# 提交文件
+git commit -m 'hello world'
+
+# 查看历史提交
+git log
+git log --graph --pretty=oneline
+
+# 查看历史提交ID
+git reflog
+
+# 版本回退
+git reset --hard HEAD^
+
+# 丢弃工作区的修改
+git checkout -- README.md
+
+# 如果已加到暂缓区，可用这个恢复
+git reset HEAD README.md
+
+# 从删除文件
+git rm README.md
+
+# 远程仓库和本地仓库关联
+git remote add origin git@127.0.0.1:testgit.git
+
+# 将主分支修改推送到服务器 (git push <远程主机名> <本地分支名>:<远程分支名>)
+git push -u origin master
+
+# 下载主分支数据 (git pull <远程主机名> <远程分支名>:<本地分支名>)
+git pull -u origin master
+
+
+
+# 克隆服务器端Git仓库中的文件或目录到本地当前目录。
+git clone git@127.0.0.1:testgit.git
+
+
+git branch -a #查看所有分支
+git branch -vv #（两个v）查看本地分支跟踪的远程分支
+
+# 建立并切换newbranch分支
+git checkout -b newbranch
+
+# 切换到master分支
+git checkout yourbranch
+
+# 本地的master分支自动”追踪”origin/master分支
+git branch --set-upstream master origin/next
+
+合并分支
+
+将 coreteam/master 合并到本地的 newbranch 分支
+
+先 git checkout newbranch 切换到newbranch分支
+
+再 git merge coreteam/master
+
+将主分支修改推送到服务器
+
+git push origin master  
+
+将newbranch分支修改推送到服务器
+
+git push origin newbranch
+
+
+------config 配置有system级别 global（用户级别） 和local（当前仓库）--------
+优先级为（由高到低）：git config > git config --global > git config --system
+git config --list
+git config --system --list		#Git\etc\.gitconfig
+git config --global --list		#~\.gitconfig
+git config --local --list		#.git\config
+git config --(local|global|system) --unset <key> 清除
